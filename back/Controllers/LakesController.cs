@@ -24,7 +24,7 @@ namespace back.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetLakesAsync(int id)
+        public async Task<IActionResult> GetLakesAsync(Guid id)
         {
             var existingLake = await _context.Lakes.FindAsync(id);
             if (existingLake == null)
@@ -43,7 +43,7 @@ namespace back.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, Lake lakes)
+        public async Task<IActionResult> PutAsync(Guid id, Lake lakes)
         {
             var existingLake = await _context.Lakes.FindAsync(id);
             if (existingLake == null)
@@ -61,7 +61,7 @@ namespace back.Controllers
         }
 
         [HttpDelete("{id}")]
-       public async Task<IActionResult> DeleteAsync(int id)
+       public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var existingLake = await _context.Lakes.FindAsync(id);
             if (existingLake == null)

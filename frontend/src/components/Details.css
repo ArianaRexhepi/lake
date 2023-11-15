@@ -1,0 +1,18 @@
+.lake-details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .lake-details-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .lake-details-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+  }
+  

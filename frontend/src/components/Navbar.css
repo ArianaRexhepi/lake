@@ -1,4 +1,3 @@
-/* Navbar.css */
 .navbar {
     background-color: lightblue;
     padding: 10px;
@@ -6,18 +5,17 @@
   
   .nav-list {
     list-style: none;
-    padding: 0;
     margin: 0;
   }
   
   .nav-item {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 20px;
   }
   
   .nav-link {
     text-decoration: none;
-    color: white;
+
     padding: 5px 10px;
     border-radius: 5px;
   }
@@ -25,4 +23,17 @@
   .nav-link:hover {
     background-color: whitesmoke;
   }
-  
+
+  .nav-logo{
+    color:darkblue;
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .dropdown{
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .dropdown button{
+    background-color: lightblue;
+    align-items: flex-end;
+  }

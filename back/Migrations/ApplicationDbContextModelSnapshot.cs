@@ -21,9 +21,9 @@ namespace back.Migrations
 
             modelBuilder.Entity("back.Models.Lake", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
@@ -37,6 +37,36 @@ namespace back.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lakes");
+                });
+
+            modelBuilder.Entity("back.Models.LakeSighting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("LakeId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LakeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LakeSightings");
                 });
 
             modelBuilder.Entity("backend.Models.AppUser", b =>
@@ -234,6 +264,24 @@ namespace back.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("back.Models.LakeSighting", b =>
+                {
+                    b.HasOne("back.Models.Lake", "Lake")
+                        .WithMany("LakeSightings")
+                        .HasForeignKey("LakeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Models.AppUser", "User")
+                        .WithMany("LakeSightings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Lake");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -283,6 +331,16 @@ namespace back.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("back.Models.Lake", b =>
+                {
+                    b.Navigation("LakeSightings");
+                });
+
+            modelBuilder.Entity("backend.Models.AppUser", b =>
+                {
+                    b.Navigation("LakeSightings");
                 });
 #pragma warning restore 612, 618
         }

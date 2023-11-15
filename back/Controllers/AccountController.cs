@@ -68,7 +68,7 @@ namespace backend.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("User failed to register!");
             }
         }
 
@@ -80,7 +80,7 @@ namespace backend.Controllers
 
             if (user == null)
             {
-                return Unauthorized();
+                return BadRequest("Invalid Email");
             }
 
             var roles = await GetUserRole(user);
@@ -93,7 +93,7 @@ namespace backend.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Invalid password");
             }
         }
 

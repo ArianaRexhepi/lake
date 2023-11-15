@@ -1,39 +1,35 @@
-import React from 'react';
-import './Home.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Link } from "react-router-dom"; 
+import "./Home.css"; 
 
-const HomePage = () => {
+const Home = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <h1><i>Explore lakes with us</i></h1>
-        <div className="col-md-8">
-          <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src="https://www.rockymountaineer.com/sites/default/files/styles/node__blog_post__bp_blog_hero/public/bp_hero_image/Emerald-Lake---Credit-Suran-Gaw%2C-Adobe-Stock_2.jpg?h=600f3c74&itok=ScUsCbCV" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="https://res.cloudinary.com/simpleview/image/upload/v1627494161/clients/whitemountainsnh/Towns_LakesRegion_20853a40-13fc-446c-9080-d9372c1b1656.jpg" className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src="https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/other/d/_DSC1838_wilderness.png?crop=0%2C175%2C3000%2C1650&wid=4000&hei=2200&scl=0.75" className="d-block w-100" alt="..." />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="text-right">
-            <h2>Have you ever wanted to take a closer look at lakes?</h2>
-            <p>
-              This is your chance to see the beauty of lakes.
-            </p>
-          </div>
-          <button type="button" class="btn btn-info">Explore now</button>
-        </div>
+    <div className="home-container">
+      <div className="left-section">
+        <img
+          src="https://www.celebritycruises.com/blog/content/uploads/2022/06/lakes-in-norway-lovatnet-olden-hero.jpg"
+          alt="Lakes"
+          className="image"
+        />
+      </div>
+      <div className="right-section">
+        <h2>Explore Lakes with Us</h2>
+        <p>
+         
+Exploring lakes offers a serene and captivating experience, inviting you to immerse yourself in the natural beauty and tranquility that these bodies of water provide. 
+        </p>
+        <p>
+        Lakes serve as pristine havens, where the symphony of lapping water against the shores harmonizes with the rustling leaves and the calls of resident wildlife. 
+        </p>
+        <p>Each lake has a unique personality, reflecting the surrounding landscapes and ecosystems. Whether nestled in the heart of lush forests, cradled by majestic mountains, or glistening under an expansive sky, lakes showcase the diversity of our planet's geography.</p>
+        <Link to="/explore">
+          <button type="button" className="btn btn-primary">
+            Explore Now
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default Home;
