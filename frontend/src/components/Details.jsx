@@ -32,7 +32,15 @@ const Details = () => {
       console.error("Error fetching lake details:", error.response);
     }
   };
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post('/lakeSighting', addSighting).then(()=>{
+      setShow(false);
+      setAddSighting(INITIAL_SIGHTING);
+    }).catch((error)=>{
+      console.log(error.response)
+    })
+  }
   const handleInputChange = (e) => {
     const { value, name } = e.target;
     setAddSighting({ ...addSighting, [name]: value });
@@ -62,14 +70,15 @@ const Details = () => {
             Add Sighting
           </Modal.Title>
         </Modal.Header>
+        <form onSubmit={handleSubmit}> 
         <Modal.Body>
           <div className="form-group">
-            <label htmlFor="title">Longtitude:</label>
+            <label htmlFor="title">Longitude:</label>
             <input
               required
               type="number"
               value={addSighting.longitude}
-              name="longtitude"
+              name="longitude"
               onChange={handleInputChange}
               className="form-control"
             />
@@ -101,8 +110,9 @@ const Details = () => {
           <Button variant="danger" onClick={() => setShow(false)}>
             Close
           </Button>
-          <Button>Add </Button>
+          <Button type="submit">Add </Button>
         </Modal.Footer>
+        </form>
       </Modal>
     </>
   );
