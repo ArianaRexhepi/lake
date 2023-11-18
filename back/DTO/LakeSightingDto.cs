@@ -4,6 +4,7 @@ namespace backend.DTO
 {
     public class LakeSightingDto
     {
+        public Guid Id { get; set; }
         [Required]
         public double Longitude { get; set; }
         [Required]

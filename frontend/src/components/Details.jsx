@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./Details.css";
 import { Button } from "react-bootstrap";
@@ -19,6 +19,7 @@ const Details = () => {
   const [lake, setLake] = useState(null);
   const [show, setShow] = useState(false);
   const [addSighting, setAddSighting] = useState(INITIAL_SIGHTING);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchLakeDetails();
@@ -34,13 +35,16 @@ const Details = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/lakeSighting', addSighting).then(()=>{
-      setShow(false);
-      setAddSighting(INITIAL_SIGHTING);
-    }).catch((error)=>{
-      console.log(error.response)
-    })
-  }
+    await axios
+      .post("/lakeSighting", addSighting)
+      .then(() => {
+        setShow(false);
+        setAddSighting(INITIAL_SIGHTING);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
   const handleInputChange = (e) => {
     const { value, name } = e.target;
     setAddSighting({ ...addSighting, [name]: value });
@@ -52,11 +56,21 @@ const Details = () => {
 
   return (
     <>
-      <div className="lake-details-container">
-        <h1>{lake.name}</h1>
-        <img src={lake.image} alt={lake.name} className="lake-details-image" />
-        <p className="lake-details-description">{lake.description}</p>
-        <Button onClick={() => setShow(true)}>Add Sighting</Button>
+      <div className="lake-details">
+        <div className="lake-details-container">
+          <img
+            src={lake.image}
+            alt={lake.name}
+            className="lake-details-image"
+          />
+          <div>
+            <h1>{lake.name}</h1>
+
+            <p className="lake-details-description">{lake.description}</p>
+            <Button onClick={() => setShow(true)}>Add Sighting</Button>
+            <Button variant="success" className="ms-5" onClick={() => navigate(`/explorelake/${lakeId}`)}>View Lake Sightins</Button>
+          </div>
+        </div>
       </div>
 
       <Modal
@@ -70,48 +84,48 @@ const Details = () => {
             Add Sighting
           </Modal.Title>
         </Modal.Header>
-        <form onSubmit={handleSubmit}> 
-        <Modal.Body>
-          <div className="form-group">
-            <label htmlFor="title">Longitude:</label>
-            <input
-              required
-              type="number"
-              value={addSighting.longitude}
-              name="longitude"
-              onChange={handleInputChange}
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="title">Latitude:</label>
-            <input
-              required
-              type="number"
-              value={addSighting.latitude}
-              name="latitude"
-              onChange={handleInputChange}
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="title">Image:</label>
-            <input
-              required
-              type="text"
-              value={addSighting.image}
-              name="image"
-              onChange={handleInputChange}
-              className="form-control"
-            />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={() => setShow(false)}>
-            Close
-          </Button>
-          <Button type="submit">Add </Button>
-        </Modal.Footer>
+        <form onSubmit={handleSubmit}>
+          <Modal.Body>
+            <div className="form-group">
+              <label htmlFor="title">Longitude:</label>
+              <input
+                required
+                type="number"
+                value={addSighting.longitude}
+                name="longitude"
+                onChange={handleInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="title">Latitude:</label>
+              <input
+                required
+                type="number"
+                value={addSighting.latitude}
+                name="latitude"
+                onChange={handleInputChange}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="title">Image:</label>
+              <input
+                required
+                type="text"
+                value={addSighting.image}
+                name="image"
+                onChange={handleInputChange}
+                className="form-control"
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => setShow(false)}>
+              Close
+            </Button>
+            <Button type="submit">Add </Button>
+          </Modal.Footer>
         </form>
       </Modal>
     </>

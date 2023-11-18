@@ -17,11 +17,27 @@ namespace back.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetLakeSightings(Guid Id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetLakeSightings(Guid id)
         {
-            var lake = await _context.Lakes.Include(a => a.LakeSightings).FirstOrDefaultAsync(b => b.Id == Id);
-            return Ok(lake.LakeSightings);
+            var lake = await _context.Lakes.Include(a => a.LakeSightings).FirstOrDefaultAsync(b => b.Id == id);
+            if (lake == null) return BadRequest("Lake not found!");
+            var lakelist = new List<LakeSightingDto>();
+            foreach (var sighting in lake.LakeSightings)
+            {
+                var lakeSighting = new LakeSightingDto
+                {
+                    Id = sighting.Id,
+                    Longitude = sighting.Longitude,
+                    Latitude = sighting.Latitude,
+                    UserId = sighting.UserId,
+                    LakeId = sighting.LakeId,
+                    Image = sighting.Image
+
+                };
+                lakelist.Add(lakeSighting);
+            }
+            return Ok(lakelist);
         }
 
 
@@ -46,7 +62,7 @@ namespace back.Controllers
             _context.LakeSightings.Add(newLakeSigting);
             user.LakeSightings.Add(newLakeSigting);
             lake.LakeSightings.Add(newLakeSigting);
-            
+
 
             var result = await _context.SaveChangesAsync() > 0;
             if (!result) return BadRequest("Failed to add Lake Sighting");

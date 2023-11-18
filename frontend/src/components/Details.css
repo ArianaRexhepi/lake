@@ -1,11 +1,22 @@
+.lake-details{
+margin-top: 70px;
+flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
 .lake-details-container {
-    max-width: 800px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
     margin: 0 auto;
     padding: 20px;
+
   }
   
   .lake-details-image {
-    max-width: 100%;
+    max-width: 55%;
     height: auto;
     margin-bottom: 20px;
   }

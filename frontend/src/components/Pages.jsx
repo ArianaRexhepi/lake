@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./authguard/ProtectedRoute";
 import EditLakes from "./LakeModel/EditLakeModel";
 import Explore from "./Explore";
 import { AdminProtectedRoute } from "./authguard/AdminProtectedRoute";
+import LakeSighting from "./LakeSighting";
 const Pages = () => {
   return (
     <>
@@ -19,6 +20,7 @@ const Pages = () => {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/explore/:lakeId" element={<Details />} />
+        <Route path="/explorelake/:lakeId" element={<LakeSighting />} />
         <Route element={<AdminProtectedRoute redirectPath="/" />}>
           <Route path="/lakeslist" element={<LakeModelList />} />
           <Route path="/createlakes" element={<CreateLakeModel />} />
