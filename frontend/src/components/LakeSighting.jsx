@@ -52,7 +52,7 @@ const LakeSighting = () => {
 
   return (
     <div>
-      <h1 className="text-center mb-5 mt-5">Lake Sightings</h1>
+      <h1 className="text-center mb-5 mt-5 " style={{ color: 'darkblue' }}><b><i>Lake Sightings</i></b></h1>
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -75,10 +75,10 @@ const LakeSighting = () => {
               <div>
                 <h1>{lake.name}</h1>
                 <p>Fun Fact: {funfacts[index]}</p>
-                <p className="lake-details-description">
-                  Longtitude: {sighting.longitude}
+                <p >
+                  <b style={{ color: 'darkblue' }}><i>Longtitude: </i></b>{sighting.longitude}
                 </p>
-                <p>Latitude:{sighting.latitude}</p>
+                <p><b style={{ color: 'darkblue' }}><i>Latitude: </i></b>{sighting.latitude}</p>
               </div>
             </div>
           </SwiperSlide>
