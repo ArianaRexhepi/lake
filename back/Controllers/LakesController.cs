@@ -30,14 +30,14 @@ namespace back.Controllers
             if (existingLake == null)
             {
                 return NotFound();
-            } 
+            }
             return Ok(existingLake);
         }
 
         [HttpPost]
         public async Task<IActionResult> PostAsync(Lake lakes)
         {
-           await  _context.Lakes.AddAsync(lakes);
+            await _context.Lakes.AddAsync(lakes);
             await _context.SaveChangesAsync();
             return Ok();
         }
@@ -55,13 +55,13 @@ namespace back.Controllers
             existingLake.Image = lakes.Image;
             existingLake.Description = lakes.Description;
 
-             _context.SaveChanges();
+            _context.SaveChanges();
 
             return Ok();
         }
 
         [HttpDelete("{id}")]
-       public async Task<IActionResult> DeleteAsync(Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var existingLake = await _context.Lakes.FindAsync(id);
             if (existingLake == null)

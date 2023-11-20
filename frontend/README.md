@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+first step got oblbla
+cd/back
+dotnet ef database update
+dotnet run
+
+cd/front
+npm install
+npm start
+
 ## Available Scripts
 
 In the project directory, you can run:

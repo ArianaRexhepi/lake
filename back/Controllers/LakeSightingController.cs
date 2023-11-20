@@ -69,5 +69,16 @@ namespace back.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var existingSighting = await _context.LakeSightings.FindAsync(id);
+            _context.LakeSightings.Remove(existingSighting);
+
+            var result = await _context.SaveChangesAsync() > 0;
+            if (!result) return BadRequest("Failed to delete Lake Sighting");
+            return Ok();
+        }
+
     }
 }

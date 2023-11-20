@@ -10,7 +10,6 @@ const Explore = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     fetch();
   }, []);
@@ -66,6 +65,7 @@ const Explore = () => {
           />
         </div>
       </>
+
       <div className="lake-container">
         {(searchResults.length > 0 ? searchResults : lakes).map(
           (lake, index) => (
@@ -81,7 +81,9 @@ const Explore = () => {
               />
               <div className="lake-card-details">
                 <h3 className="lake-card-title">{lake.name}</h3>
-                <p className="lake-card-author">By {lake.description.slice(0,150)}...</p>
+                <p className="lake-card-author">
+                  By {lake.description.slice(0, 150)}...
+                </p>
               </div>
             </div>
           )
