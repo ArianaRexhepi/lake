@@ -15,6 +15,7 @@ namespace backend.DTO
         public Guid LakeId { get; set; }
         [Required]
         public string Image { get; set; }
+        public string Name { get; set; }
 
     }
 }

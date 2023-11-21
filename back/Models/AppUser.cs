@@ -8,4 +8,6 @@ public class AppUser : IdentityUser
     public string Name { get; set; }
 
     public ICollection<LakeSighting> LakeSightings { get; set; }
+
+    public ICollection<Favorite> Favorites { get; set; }
 }

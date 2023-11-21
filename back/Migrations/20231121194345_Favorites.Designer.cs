@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using back.Data;
 
@@ -10,9 +11,10 @@ using back.Data;
 namespace back.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231121194345_Favorites")]
+    partial class Favorites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,18 +27,13 @@ namespace back.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<Guid>("LakeSightingId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("UserId")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Favorites");
                 });
@@ -67,6 +64,9 @@ namespace back.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("FavoriteId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Image")
                         .HasColumnType("longtext");
 
@@ -83,6 +83,8 @@ namespace back.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FavoriteId");
 
                     b.HasIndex("LakeId");
 
@@ -288,13 +290,19 @@ namespace back.Migrations
 
             modelBuilder.Entity("back.Models.Favorite", b =>
                 {
-                    b.HasOne("backend.Models.AppUser", null)
-                        .WithMany("Favorites")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("backend.Models.AppUser", "User")
+                        .WithOne("Favorite")
+                        .HasForeignKey("back.Models.Favorite", "UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("back.Models.LakeSighting", b =>
                 {
+                    b.HasOne("back.Models.Favorite", null)
+                        .WithMany("LakeSightings")
+                        .HasForeignKey("FavoriteId");
+
                     b.HasOne("back.Models.Lake", "Lake")
                         .WithMany("LakeSightings")
                         .HasForeignKey("LakeId")
@@ -362,6 +370,11 @@ namespace back.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("back.Models.Favorite", b =>
+                {
+                    b.Navigation("LakeSightings");
+                });
+
             modelBuilder.Entity("back.Models.Lake", b =>
                 {
                     b.Navigation("LakeSightings");
@@ -369,7 +382,7 @@ namespace back.Migrations
 
             modelBuilder.Entity("backend.Models.AppUser", b =>
                 {
-                    b.Navigation("Favorites");
+                    b.Navigation("Favorite");
 
                     b.Navigation("LakeSightings");
                 });

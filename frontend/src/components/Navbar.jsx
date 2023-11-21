@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/actions";
+import { setFavorites, setUser } from "../redux/actions";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
+  const navigate = useNavigate();
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const Navbar = () => {
   const handleLogOut = () => {
     localStorage.removeItem("token");
     dispatch(setUser(null));
+    dispatch(setFavorites([]));
+    navigate("/")
   };
 
   

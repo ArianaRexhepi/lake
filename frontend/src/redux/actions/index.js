@@ -1,4 +1,4 @@
-import { SET_USER } from './types'
+import { SET_FAVORITES, SET_USER } from './types'
 
 const setUser = (user) => {
   return {
@@ -6,5 +6,11 @@ const setUser = (user) => {
     user: user
   };
 };
+const setFavorites = (favorites) => {
+  return {
+    type: SET_FAVORITES,
+    favorites: favorites
+  };
+};
 
-export { setUser };
+export { setUser, setFavorites };

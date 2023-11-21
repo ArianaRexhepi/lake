@@ -12,7 +12,7 @@ const Details = () => {
   const INITIAL_SIGHTING = {
     longitude: 0,
     latitude: 0,
-    userId: state.user.id,
+    userId: state.user?state.user.id:"",
     lakeId: lakeId,
     image: "",
   };
@@ -67,22 +67,21 @@ const Details = () => {
             <h1>{lake.name}</h1>
 
             <p className="lake-details-description">{lake.description}</p>
-            <Button className="" onClick={() => navigate("/likes")}>
-              Like
-            </Button>
-            <Button
-              className="ms-5"
-              variant="dark"
-              onClick={() => setShow(true)}
-            >
-              Add Sighting
-            </Button>
+            {state.user && (
+              <Button
+                className=""
+                variant="primary"
+                onClick={() => setShow(true)}
+              >
+                Add Sighting
+              </Button>
+            )}
             <Button
               variant="success"
               className="ms-5"
               onClick={() => navigate(`/explorelake/${lakeId}`)}
             >
-              View Lake Sightins
+              View Lake Sightings
             </Button>
           </div>
         </div>

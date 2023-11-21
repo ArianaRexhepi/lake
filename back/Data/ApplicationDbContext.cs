@@ -22,15 +22,14 @@ namespace back.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<LakeSighting>()
-              .HasOne(a => a.Lake)
-              .WithMany(b => b.LakeSightings)
-              .HasForeignKey(f => f.LakeId)
-              .OnDelete(DeleteBehavior.Cascade);
-
-
+                .HasOne(a => a.Lake)
+                .WithMany(b => b.LakeSightings)
+                .HasForeignKey(f => f.LakeId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
         public DbSet<Lake> Lakes { get; set; }
         public DbSet<LakeSighting> LakeSightings { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
     }
 }

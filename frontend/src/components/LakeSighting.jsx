@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { setFavorites } from "../redux/actions";
 
 const LakeSighting = () => {
   const [lake, setLake] = useState("");
@@ -13,6 +14,7 @@ const LakeSighting = () => {
   const [loadingInitial, setLoadingInitial] = useState(true);
   const [funfacts, setFunFacts] = useState([]);
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const fetchLakeSightings = async () => {
     await axios
@@ -58,6 +60,40 @@ const LakeSighting = () => {
   if (loadingInitial) {
     return <div>Loading...</div>;
   }
+  const addFavorite = async (id) => {
+    const data = {
+      sightingId: id,
+    };
+    await axios
+      .post("/favorite", data)
+      .then((res) => {
+        const favoritelist = state.favorites;
+        favoritelist.push(res.data);
+        dispatch(setFavorites(favoritelist));
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+
+  const findFavorite = (id) => {
+    return state.favorites.some(
+      (f) => f.lakeSightingId === id && f.userId === state.user.id
+    );
+  };
+  const removeFavorite = async (id) => {
+    await axios
+      .delete(`/favorite/${id}`)
+      .then((res) => {
+        const favoritelist = state.favorites.filter(
+          (fav) => fav.id !== res.data
+        );
+        dispatch(setFavorites(favoritelist));
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
 
   const handleDelete = async (id) => {
     await axios
@@ -112,7 +148,23 @@ const LakeSighting = () => {
                   </b>
                   {sighting.latitude}
                 </p>
-                {state.user.id === sighting.userId && (
+                {state.user &&
+                  (findFavorite(sighting.id) ? (
+                    <Button
+                      className="me-5"
+                      onClick={() => removeFavorite(sighting.id)}
+                    >
+                      Unlike
+                    </Button>
+                  ) : (
+                    <Button
+                      className="me-5"
+                      onClick={() => addFavorite(sighting.id)}
+                    >
+                      Like
+                    </Button>
+                  ))}
+                {state.user && state.user.id === sighting.userId && (
                   <Button
                     onClick={() => handleDelete(sighting.id)}
                     variant="danger"
