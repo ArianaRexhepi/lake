@@ -25,15 +25,18 @@ function App() {
         .catch((err) => {
           console.log(err);
         })
-        .finally(()=>{
+        .finally(() => {
           setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
   };
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <Pages />

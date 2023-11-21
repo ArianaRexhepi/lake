@@ -64,6 +64,11 @@ const Navbar = () => {
                       My Profile
                     </Link>
                   </li>
+                  <li className="dropdown-item">
+                    <Link to="/likes" className="nav-link">
+                      My Favorites
+                    </Link>
+                  </li>
                   {isAdmin && (
                     <li className="dropdown-item">
                       <Link to="/lakeslist" className="nav-link">

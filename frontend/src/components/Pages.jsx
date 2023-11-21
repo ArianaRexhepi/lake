@@ -12,6 +12,7 @@ import EditLakes from "./LakeModel/EditLakeModel";
 import Explore from "./Explore";
 import { AdminProtectedRoute } from "./authguard/AdminProtectedRoute";
 import LakeSighting from "./LakeSighting";
+import LikedLakes from "./LikedLakes";
 const Pages = () => {
   return (
     <>
@@ -28,6 +29,7 @@ const Pages = () => {
         </Route>
         <Route element={<ProtectedRoute redirectPath="/" />}>
           <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/likes" element={<LikedLakes />} />
         </Route>
         <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
           <Route path="/login" element={<Login />} />

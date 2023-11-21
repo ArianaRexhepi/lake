@@ -67,8 +67,23 @@ const Details = () => {
             <h1>{lake.name}</h1>
 
             <p className="lake-details-description">{lake.description}</p>
-            <Button onClick={() => setShow(true)}>Add Sighting</Button>
-            <Button variant="success" className="ms-5" onClick={() => navigate(`/explorelake/${lakeId}`)}>View Lake Sightins</Button>
+            <Button className="" onClick={() => navigate("/likes")}>
+              Like
+            </Button>
+            <Button
+              className="ms-5"
+              variant="dark"
+              onClick={() => setShow(true)}
+            >
+              Add Sighting
+            </Button>
+            <Button
+              variant="success"
+              className="ms-5"
+              onClick={() => navigate(`/explorelake/${lakeId}`)}
+            >
+              View Lake Sightins
+            </Button>
           </div>
         </div>
       </div>
