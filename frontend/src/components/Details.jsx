@@ -78,7 +78,7 @@ const Details = () => {
             )}
             <Button
               variant="success"
-              className="ms-5"
+              className="ms-3"
               onClick={() => navigate(`/explorelake/${lakeId}`)}
             >
               View Lake Sightings
