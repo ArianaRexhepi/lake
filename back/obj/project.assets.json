@@ -10036,11 +10036,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/els/Desktop/LakeXplorer/back/back.csproj",
+      "projectUniqueName": "/Users/els/Desktop/work/LakeXplorer/back/back.csproj",
       "projectName": "back",
-      "projectPath": "/Users/els/Desktop/LakeXplorer/back/back.csproj",
+      "projectPath": "/Users/els/Desktop/work/LakeXplorer/back/back.csproj",
       "packagesPath": "/Users/els/.nuget/packages/",
-      "outputPath": "/Users/els/Desktop/LakeXplorer/back/obj/",
+      "outputPath": "/Users/els/Desktop/work/LakeXplorer/back/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/els/.nuget/NuGet/NuGet.Config"

@@ -83,6 +83,6 @@ try
 catch (Exception ex)
 {
     Console.WriteLine(ex.Message);
-}
+};
 
 await app.RunAsync();

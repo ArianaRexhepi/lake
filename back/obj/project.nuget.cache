@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H/S7s/tg/mXROBgqmCFKsEEqSAXHkXQgMoTcnmdbCUS6BdErCWnuxrOhIHHPLOvC1eluCp+TyTZc/hT7r9kGjw==",
+  "dgSpecHash": "kpv0nbgjKb+ozSZDlDr60YkEQ0jpGHjn1sqTYyl5gIuG/uXBiM/3wBaaqMlmzHzCDR0bozt4GFC3zmXR9Fx0/Q==",
   "success": true,
-  "projectFilePath": "/Users/els/Desktop/LakeXplorer/back/back.csproj",
+  "projectFilePath": "/Users/els/Desktop/work/LakeXplorer/back/back.csproj",
   "expectedPackageFiles": [
     "/Users/els/.nuget/packages/database/2.5.0/database.2.5.0.nupkg.sha512",
     "/Users/els/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
